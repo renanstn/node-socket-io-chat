@@ -7,13 +7,17 @@ app.get('/', function(request, response) {
 });
 
 io.on('connection', function(socket) {
-    console.log('A user connected');
+    socket.on('user connected', function(nick) {
+        const msg = 'User connected, welcome ' + nick;
+        io.emit('user connected', msg);
+    })
 
     socket.on('disconnect', function() {
-        console.log('user disconnected');
+        io.emit('user disconnected');
     });
 
-    socket.on('chat message', function(msg) {
+    socket.on('chat message', function(data) {
+        const msg = `${data.nick} diz: ${data.msg}`;
         io.emit('chat message', msg);
     })
 });

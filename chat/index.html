@@ -62,16 +62,34 @@
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <script>
         $(function() {
-            var socket = io();
+            const socket = io();
+            const nickname = prompt('Digite seu nick:');
+
+            socket.emit('user connected', nickname);
+
+            $('#m').focus();
 
             $('form').submit(function(e) {
                 e.preventDefault();
-                socket.emit('chat message', $('#m').val());
+                const data = {
+                    'msg': $('#m').val(),
+                    'nick': nickname,
+                }
+                socket.emit('chat message', data);
                 $('#m').val('');
                 return false;
             });
-    
+
             socket.on('chat message', function(msg) {
+                $('#messages').append($('<li>').text(msg));
+            });
+
+            socket.on('user connected', function(msg) {
+                $('#messages').append($('<li>').text(msg));
+            });
+
+            socket.on('user disconnected', function() {
+                const msg = "Usuário desconectado!";
                 $('#messages').append($('<li>').text(msg));
             });
         });
