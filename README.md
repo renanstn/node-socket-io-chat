@@ -9,7 +9,7 @@ Chat simples feito em nodeJS, desenvolvido seguindo o [exemplo](https://socket.i
 - Instale as dependências
   - `npm install`
 - Execute
-  - `node inde.js`
+  - `node index.js`
 - Acessar:
   - `localhost:3000`
 
