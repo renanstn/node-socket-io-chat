@@ -1,5 +1,7 @@
 # node-socket-io-chat
 
+Chat simples feito em nodeJS, desenvolvido seguindo o [exemplo](https://socket.io/get-started/chat/) do próprio site do socket.io, para fins de estudos aleatórios.
+
 ## Setup:
 - Clone o projeto
 - Acesse a pasta chat
